@@ -1,0 +1,10 @@
+.LeftMenuContent {
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  min-width: var(--left-menu-width);
+  max-width: var(--left-menu-width);
+  padding: 10px 15px;
+  min-height: 100%;
+}

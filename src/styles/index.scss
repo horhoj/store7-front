@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--body-bg-color);
+  color: var(--main-color);
+}
+
 * {
   &::-webkit-scrollbar {
     width: 8px;
@@ -24,6 +29,18 @@
   }
 }
 
+:root {
+  --header-height: 80px;
+  --footer-height: 40px;
+  --left-menu-width: 300px;
+  //colors
+  --body-bg-color: #ddd;
+  --main-bg-color: #fff;
+  --main-color: #333;
+}
 
-
-
+.dark {
+  --body-bg-color: #222;
+  --main-bg-color: #333;
+  --main-color: #fff;
+}

@@ -1,0 +1,9 @@
+.Header {
+  min-height: var(--header-height);
+  display: flex;
+  position: relative;
+  border-bottom: 2px solid var(--body-bg-color);
+  justify-content: space-between;
+  padding: 10px 15px;
+  align-items: center;
+}

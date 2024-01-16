@@ -1,0 +1,22 @@
+.WorkLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--main-bg-color);
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.nav {
+  display: flex;
+}
+
+.main {
+  display: flex;
+  flex-grow: 1;
+  padding: 10px 15px;
+}
