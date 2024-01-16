@@ -37,10 +37,14 @@ body {
   --body-bg-color: #ddd;
   --main-bg-color: #fff;
   --main-color: #333;
+  --link-color: #0f12cf;
+  --link-active-bg-color: ddd;
 }
 
 .dark {
   --body-bg-color: #222;
   --main-bg-color: #333;
   --main-color: #fff;
+  --link-color: #dc9a0c;
+  --link-active-bg-color: #444;
 }

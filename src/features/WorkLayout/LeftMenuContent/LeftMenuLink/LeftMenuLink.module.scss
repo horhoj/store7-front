@@ -1,0 +1,9 @@
+.LeftMenuLink {
+  text-decoration: none;
+  color: var(--link-color);
+  padding: 10px 15px;
+}
+
+.linkActive {
+  background-color: var(--link-active-bg-color);
+}
