@@ -2,6 +2,12 @@
   text-decoration: none;
   color: var(--link-color);
   padding: 10px 15px;
+
+  transition: transform 150ms;
+
+  &:hover {
+    background-color: var(--link-active-bg-color);
+  }
 }
 
 .linkActive {

@@ -38,7 +38,8 @@ body {
   --main-bg-color: #fff;
   --main-color: #333;
   --link-color: #0f12cf;
-  --link-active-bg-color: ddd;
+  --link-active-bg-color: #eee;
+  --button-border-color: #bbb;
 }
 
 .dark {
@@ -47,4 +48,5 @@ body {
   --main-color: #fff;
   --link-color: #dc9a0c;
   --link-active-bg-color: #444;
+  --button-border-color: #444;
 }
