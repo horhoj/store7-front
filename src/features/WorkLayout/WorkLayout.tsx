@@ -1,8 +1,10 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import classNames from 'classnames';
 import { Drawer } from '../../ui/Drawer';
-import { useThemeSwitch } from '../ThemeSwitch/useThemeSwith';
+import { useThemeSwitch } from '../ThemeSwitch/useThemeSwitch';
+import { ThemeSwitchWidget } from '../ThemeSwitch/ThemeSwitchWidget';
+import { LogoutWidget } from '../auth/LogoutWidget';
 import { LeftMenu } from './LeftMenu';
 import styles from './WorkLayout.module.scss';
 import { LeftMenuContent } from './LeftMenuContent';
@@ -18,7 +20,10 @@ interface WorkLayoutProps {
 export function WorkLayout({ children }: WorkLayoutProps) {
   const [isOpen, setIsOpen] = useState(true);
   const isMobile = useMediaQuery('only screen and (max-width: 1200px)');
-  const { handleThemeSwitch, isDarkTheme } = useThemeSwitch();
+
+  useEffect(() => {
+    setIsOpen(!isMobile);
+  }, [isMobile]);
 
   const handleMenuButtonClick = () => {
     setIsOpen((prev) => !prev);
@@ -37,9 +42,8 @@ export function WorkLayout({ children }: WorkLayoutProps) {
       <div className={styles.WorkLayout}>
         <Header>
           <Logo onMenuBtnClick={handleMenuButtonClick} />
-          <Button onClick={handleThemeSwitch} isIcon={false}>
-            {isDarkTheme ? 'Dark' : 'White'}
-          </Button>
+          <ThemeSwitchWidget />
+          <LogoutWidget />
         </Header>
         <div className={styles.content}>
           <div className={styles.nav}>

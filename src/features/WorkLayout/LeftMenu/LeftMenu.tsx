@@ -27,5 +27,4 @@ export function LeftMenu({ isOpen, children }: LeftMenuProps) {
       </div>
     </CSSTransition>
   );
-  // return <div className={styles.LeftMenu}>LeftMenu</div>;
 }

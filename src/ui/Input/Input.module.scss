@@ -1,0 +1,57 @@
+.Input {
+  border: 1px solid var(--button-border-color);
+  color: var(--main-color);
+  padding: 15px 15px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  font-size: 16px;
+  height: 48px;
+  // width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.isError {
+  border: 1px solid var(--input-border-error);
+
+  &:focus {
+    outline: 1px solid var(--input-border-error);
+  }
+}
+
+.passwordShowToggleIcon {
+  position: absolute;
+  // top: 4px;
+  right: 8px;
+  cursor: pointer;
+  transition: transform 200ms;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--main-color);
+  font-size: 20px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--button-border-color);
+  display: flex;
+  
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+}
+
+.isPassword {
+  padding: 15px 45px 15px 15px;
+}
