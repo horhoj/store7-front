@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 body {
@@ -40,15 +41,15 @@ body {
   --link-color: #0f12cf;
   --link-active-bg-color: #eee;
   --button-border-color: #bbb;
-  --input-border-error: #ff0000;
+  --error-color: #ff0000;
 }
 
 .dark {
   --body-bg-color: #222;
   --main-bg-color: #333;
-  --main-color: #fff;
+  --main-color: #ddd;
   --link-color: #dc9a0c;
   --link-active-bg-color: #444;
   --button-border-color: #444;
-  --input-border-error: #bb0000;
+  --error-color: #dd0000;
 }

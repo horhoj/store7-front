@@ -1,14 +1,13 @@
 import classNames from 'classnames';
 import { InputHTMLAttributes, forwardRef, useState } from 'react';
 import styles from './Input.module.scss';
-import { PasswordShowToggleIcon } from '~/assets/icons';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ type, className, isError = false, ...props }, ref) => {
+  ({ type, className, isError = false, disabled, ...props }, ref) => {
     const [isPasswordShow, setIsPasswordShow] = useState(true);
 
     const handlePasswordShowToggle = () => {
@@ -27,6 +26,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={styles.passwordShowToggleIcon}
             onClick={handlePasswordShowToggle}
             type={'button'}
+            disabled={disabled}
           >
             {isPasswordShow ? 'S' : 'H'}
           </button>
@@ -42,6 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             type === 'password' && styles.isPassword,
           )}
           ref={ref}
+          disabled={disabled}
         ></input>
       </span>
     );

@@ -7,7 +7,7 @@ interface AuthLayoutProps {
 export function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className={styles.AuthLayout}>
-      <div>
+      <div className={styles.header}>
         <ThemeSwitchWidget />
       </div>
       <div>{children}</div>

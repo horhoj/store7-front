@@ -6,7 +6,7 @@ export function LogoutWidget() {
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    dispatch(authSlice.actions.setIsAuth(false));
+    dispatch(authSlice.thunks.logoutThunk());
   };
 
   return <Button onClick={handleLogout}>Exit</Button>;

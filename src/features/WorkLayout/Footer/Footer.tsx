@@ -5,9 +5,9 @@ interface FooterProps {
 }
 export function Footer({ children }: FooterProps) {
   return (
-    <div className={styles.Footer}>
+    <footer className={styles.Footer}>
       Авторское право © {new Date().getFullYear()} cool29horhoj. Все права
       защищены.
-    </div>
+    </footer>
   );
 }

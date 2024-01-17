@@ -2,8 +2,14 @@
   margin: 100px auto auto auto;
   max-width: 400px;
   background-color: var(--main-bg-color);
-  padding: 10px 15px;
+  padding: 20px 15px;
   border-radius: 10px;
   display: flex;
   gap: 10px;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
 }
