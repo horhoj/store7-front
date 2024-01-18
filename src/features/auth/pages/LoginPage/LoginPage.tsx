@@ -40,7 +40,7 @@ const validationSchema: yup.ObjectSchema<InitialValues> = yup.object({
 
 export function LoginPage() {
   const dispatch = useAppDispatch();
-  const { authRedirect } = useAuthRedirect();
+  useAuthRedirect();
   const formik = useFormik<InitialValues>({
     initialValues,
     enableReinitialize: true,
@@ -48,7 +48,9 @@ export function LoginPage() {
     onSubmit: (values) => {
       dispatch(
         authSlice.thunks.loginThunk({
-          successCb: authRedirect,
+          successCb: () => {
+            console.log('loginSuccess');
+          },
           loginPayload: values,
         }),
       );
@@ -64,12 +66,7 @@ export function LoginPage() {
     <>
       <Spinner isShow={loginRequest.isLoading} />
       <AuthLayout>
-        <Form
-          onSubmit={formik.handleSubmit}
-          noValidate
-          autoComplete={'off'}
-          aria-disabled={loginRequest.isLoading}
-        >
+        <Form onSubmit={formik.handleSubmit} noValidate autoComplete={'off'}>
           <FormField title={'email'} error={emailFieldData.errorText}>
             <Input
               {...emailFieldData.fieldProps}

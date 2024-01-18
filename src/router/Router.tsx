@@ -4,12 +4,14 @@ import { ProductListPage } from '~/features/products/pages/ProductListPage';
 import { CategoryListPage } from '~/features/categories/pages/CategoryListPage';
 import { LoginPage } from '~/features/auth/pages/LoginPage';
 import { ProtectedRoute } from '~/features/auth/ProtectedRoute';
+import { RegisterPage } from '~/features/auth/pages/RegisterPage';
 
 export function Router() {
   return (
     <>
       <Routes>
         <Route path={routes.LOGIN} element={<LoginPage />} />
+        <Route path={routes.REGISTER} element={<RegisterPage />} />
         <Route
           path={routes.PRODUCT_LIST}
           element={

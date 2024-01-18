@@ -1,4 +1,4 @@
-import { LoginPayload, LoginResponse } from './auth.type';
+import { LoginPayload, LoginResponse, RegisterPayload } from './auth.type';
 import { LS_KEY_API_TOKEN } from '~/api/const';
 import { axiosInstance, axiosInstanceWithoutAuth } from '~/api/apiTransport';
 
@@ -29,4 +29,14 @@ export const fetchUserData = async () => {
   return res.data;
 };
 
-export const authApi = { login, logout, fetchUserData } as const;
+export const register = async (payload: RegisterPayload) => {
+  const res = await axiosInstanceWithoutAuth({
+    url: '/auth/register',
+    method: 'post',
+    data: payload,
+  });
+
+  return res.data;
+};
+
+export const authApi = { login, logout, fetchUserData, register } as const;
