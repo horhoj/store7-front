@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useEffect } from 'react';
 import { AuthLayout } from '../../../AuthLayout';
 import { authSlice } from '../../store/authSlice';
 import { useAuthRedirect } from '../../hooks/useAuthRedirect';
-import styles from './LoginPage.module.scss';
 import { Button } from '~/ui/Button';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { Input } from '~/ui/Input';
@@ -11,6 +11,10 @@ import { Form } from '~/ui/Form';
 import { FormField } from '~/ui/FormField';
 import { getFormikFieldData } from '~/utils/getFormikFieldData';
 import { Spinner } from '~/ui/Spinner';
+import { Link } from '~/ui/Link';
+import { routes } from '~/router/routes';
+import { FormResponseErrors } from '~/ui/FormResponseErrors';
+import { FormTitle } from '~/ui/FormTitle';
 
 interface InitialValues {
   email: string;
@@ -48,14 +52,18 @@ export function LoginPage() {
     onSubmit: (values) => {
       dispatch(
         authSlice.thunks.loginThunk({
-          successCb: () => {
-            console.log('loginSuccess');
-          },
           loginPayload: values,
         }),
       );
     },
   });
+
+  useEffect(
+    () => () => {
+      dispatch(authSlice.actions.loginRequestClear());
+    },
+    [],
+  );
 
   const loginRequest = useAppSelector((state) => state.auth.loginRequest);
 
@@ -67,6 +75,13 @@ export function LoginPage() {
       <Spinner isShow={loginRequest.isLoading} />
       <AuthLayout>
         <Form onSubmit={formik.handleSubmit} noValidate autoComplete={'off'}>
+          <FormTitle>Вход в систему</FormTitle>
+          {loginRequest.error && (
+            <FormResponseErrors
+              responseErrors={loginRequest.error}
+              title={'Ошибка входа в систему'}
+            />
+          )}
           <FormField title={'email'} error={emailFieldData.errorText}>
             <Input
               {...emailFieldData.fieldProps}
@@ -75,7 +90,6 @@ export function LoginPage() {
               disabled={loginRequest.isLoading}
             />
           </FormField>
-
           <FormField title={'Пароль'} error={passwordFieldData.errorText}>
             <Input
               {...passwordFieldData.fieldProps}
@@ -85,10 +99,12 @@ export function LoginPage() {
               disabled={loginRequest.isLoading}
             />
           </FormField>
-
           <Button type={'submit'} disabled={loginRequest.isLoading}>
             Submit
           </Button>
+          <div>
+            Нет аккаунта? <Link to={routes.REGISTER}>Зарегистрироваться</Link>
+          </div>
         </Form>
       </AuthLayout>
     </>

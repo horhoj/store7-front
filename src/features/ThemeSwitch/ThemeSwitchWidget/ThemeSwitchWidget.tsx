@@ -5,7 +5,7 @@ export function ThemeSwitchWidget() {
   const { handleThemeSwitch, isDarkTheme } = useThemeSwitch();
   return (
     <Button onClick={handleThemeSwitch} isIcon={false}>
-      {isDarkTheme ? 'Dark' : 'White'}
+      {isDarkTheme ? 'D' : 'W'}
     </Button>
   );
 }

@@ -1,9 +1,6 @@
 import styles from './Footer.module.scss';
 
-interface FooterProps {
-  children?: React.ReactNode;
-}
-export function Footer({ children }: FooterProps) {
+export function Footer() {
   return (
     <footer className={styles.Footer}>
       Авторское право © {new Date().getFullYear()} cool29horhoj. Все права

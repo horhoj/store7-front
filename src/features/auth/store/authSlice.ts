@@ -7,14 +7,16 @@ import {
   makeRequestExtraReducer,
   makeRequestStateProperty,
 } from '~/store/helpers';
+import { getApiErrors } from '~/api/common';
+import { ApiError } from '~/api/common.types';
 
 interface IS {
   isAuth: boolean;
   userData: unknown | null;
-  loginRequest: RequestStateProperty;
-  fetchUserDataRequest: RequestStateProperty;
-  logoutRequest: RequestStateProperty;
-  registrationRequest: RequestStateProperty;
+  loginRequest: RequestStateProperty<unknown, ApiError>;
+  fetchUserDataRequest: RequestStateProperty<unknown, ApiError>;
+  logoutRequest: RequestStateProperty<unknown, ApiError>;
+  registrationRequest: RequestStateProperty<unknown, ApiError>;
 }
 
 const SLICE_NAME = 'authSlice';
@@ -38,6 +40,14 @@ const { actions, reducer } = createSlice({
 
     setUserData: (state, action: PayloadAction<unknown | null>) => {
       state.userData = action.payload;
+    },
+
+    loginRequestClear: (state) => {
+      state.loginRequest = makeRequestStateProperty();
+    },
+
+    registrationRequestClear: (state) => {
+      state.registrationRequest = makeRequestStateProperty();
     },
   },
   extraReducers: (builder) => {
@@ -66,19 +76,17 @@ const { actions, reducer } = createSlice({
 
 interface LoginThunkPayload {
   loginPayload: LoginPayload;
-  successCb: () => void;
 }
 
 const loginThunk = createAsyncThunk(
   `${SLICE_NAME}/loginThunk`,
-  async ({ successCb, loginPayload }: LoginThunkPayload, store) => {
+  async (payload: LoginThunkPayload, store) => {
     try {
-      await authApi.login(loginPayload);
+      await authApi.login(payload.loginPayload);
       store.dispatch(actions.setIsAuth(true));
-      successCb();
       return null;
     } catch (e: unknown) {
-      return store.rejectWithValue((e as Error).message);
+      return store.rejectWithValue(getApiErrors(e));
     }
   },
 );
@@ -91,7 +99,7 @@ const logoutThunk = createAsyncThunk(`${SLICE_NAME}`, async (_, store) => {
 
     return null;
   } catch (e: unknown) {
-    return store.rejectWithValue((e as Error).message);
+    return store.rejectWithValue(getApiErrors(e));
   }
 });
 
@@ -105,14 +113,13 @@ const fetchUserDataFirstAppRunThunk = createAsyncThunk(
       return store.fulfillWithValue(null);
     } catch (e: unknown) {
       store.dispatch(actions.setIsAuth(false));
-      return store.rejectWithValue((e as Error).message);
+      return store.rejectWithValue(getApiErrors(e));
     }
   },
 );
 
 interface RegisterThunkPayload {
   registerPayload: RegisterPayload;
-  successCb: () => void;
 }
 
 const registerThunk = createAsyncThunk(
@@ -127,10 +134,9 @@ const registerThunk = createAsyncThunk(
       store.dispatch(actions.setIsAuth(true));
       const userDataRes = await authApi.fetchUserData();
       store.dispatch(actions.setUserData(userDataRes));
-      payload.successCb();
       return store.fulfillWithValue(null);
     } catch (e: unknown) {
-      return store.rejectWithValue((e as Error).message);
+      return store.rejectWithValue(getApiErrors(e));
     }
   },
 );

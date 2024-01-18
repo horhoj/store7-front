@@ -1,8 +1,6 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@uidotdev/usehooks';
-import classNames from 'classnames';
 import { Drawer } from '../../ui/Drawer';
-import { useThemeSwitch } from '../ThemeSwitch/useThemeSwitch';
 import { ThemeSwitchWidget } from '../ThemeSwitch/ThemeSwitchWidget';
 import { LogoutWidget } from '../auth/LogoutWidget';
 import { LeftMenu } from './LeftMenu';
@@ -11,7 +9,6 @@ import { LeftMenuContent } from './LeftMenuContent';
 import { Logo } from './Logo';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Button } from '~/ui/Button';
 
 interface WorkLayoutProps {
   children?: React.ReactNode;

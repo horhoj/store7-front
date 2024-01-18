@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useEffect } from 'react';
 import { AuthLayout } from '../../../AuthLayout';
 import { authSlice } from '../../store/authSlice';
 import { useAuthRedirect } from '../../hooks/useAuthRedirect';
-import styles from './LoginPage.module.scss';
 import { Button } from '~/ui/Button';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { Input } from '~/ui/Input';
@@ -11,6 +11,10 @@ import { Form } from '~/ui/Form';
 import { FormField } from '~/ui/FormField';
 import { getFormikFieldData } from '~/utils/getFormikFieldData';
 import { Spinner } from '~/ui/Spinner';
+import { Link } from '~/ui/Link';
+import { routes } from '~/router/routes';
+import { FormResponseErrors } from '~/ui/FormResponseErrors';
+import { FormTitle } from '~/ui/FormTitle';
 
 interface InitialValues {
   name: string;
@@ -59,9 +63,6 @@ export function RegisterPage() {
       dispatch(
         authSlice.thunks.registerThunk({
           registerPayload: values,
-          successCb: () => {
-            console.log('register success');
-          },
         }),
       );
     },
@@ -69,6 +70,13 @@ export function RegisterPage() {
 
   const registrationRequest = useAppSelector(
     (state) => state.auth.registrationRequest,
+  );
+
+  useEffect(
+    () => () => {
+      dispatch(authSlice.actions.registrationRequestClear());
+    },
+    [],
   );
 
   const nameFieldData = getFormikFieldData(formik, 'name');
@@ -84,6 +92,13 @@ export function RegisterPage() {
       <Spinner isShow={registrationRequest.isLoading} />
       <AuthLayout>
         <Form onSubmit={formik.handleSubmit} noValidate autoComplete={'off'}>
+          <FormTitle>Регистрация</FormTitle>
+          {registrationRequest.error && (
+            <FormResponseErrors
+              responseErrors={registrationRequest.error}
+              title={'Ошибка запроса на регистрацию'}
+            />
+          )}
           <FormField title={'name'} error={nameFieldData.errorText}>
             <Input
               {...nameFieldData.fieldProps}
@@ -126,6 +141,9 @@ export function RegisterPage() {
           </FormField>
 
           <Button type={'submit'}>Submit</Button>
+          <div>
+            Уже есть аккаунт? <Link to={routes.LOGIN}>Войти</Link>
+          </div>
         </Form>
       </AuthLayout>
     </>
