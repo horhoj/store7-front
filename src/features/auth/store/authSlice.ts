@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LoginPayload, RegisterPayload } from '../api/auth.type';
+import { UserData, LoginPayload, RegisterPayload } from '../auth.types';
 import { authApi } from '../api/auth';
 import {
   RequestList,
@@ -12,7 +12,7 @@ import { ApiError } from '~/api/common.types';
 
 interface IS {
   isAuth: boolean;
-  userData: unknown | null;
+  userData: UserData | null;
   loginRequest: RequestStateProperty<unknown, ApiError>;
   fetchUserDataRequest: RequestStateProperty<unknown, ApiError>;
   logoutRequest: RequestStateProperty<unknown, ApiError>;
@@ -38,7 +38,7 @@ const { actions, reducer } = createSlice({
       state.isAuth = action.payload;
     },
 
-    setUserData: (state, action: PayloadAction<unknown | null>) => {
+    setUserData: (state, action: PayloadAction<UserData | null>) => {
       state.userData = action.payload;
     },
 
@@ -84,6 +84,8 @@ const loginThunk = createAsyncThunk(
     try {
       await authApi.login(payload.loginPayload);
       store.dispatch(actions.setIsAuth(true));
+      const userDataRes = await authApi.fetchUserData();
+      store.dispatch(actions.setUserData(userDataRes));
       return null;
     } catch (e: unknown) {
       return store.rejectWithValue(getApiErrors(e));
