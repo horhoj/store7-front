@@ -3,6 +3,7 @@ import { useMediaQuery } from '@uidotdev/usehooks';
 import { Drawer } from '../../ui/Drawer';
 import { ThemeSwitchWidget } from '../ThemeSwitch/ThemeSwitchWidget';
 import { LogoutWidget } from '../auth/widgets/LogoutWidget';
+import { UserWidget } from '../auth/widgets/UserWidget';
 import { LeftMenu } from './LeftMenu';
 import styles from './WorkLayout.module.scss';
 import { LeftMenuContent } from './LeftMenuContent';
@@ -41,6 +42,7 @@ export function WorkLayout({ children }: WorkLayoutProps) {
           <Logo onMenuBtnClick={handleMenuButtonClick} />
           <div className={styles.headerRightBlock}>
             <ThemeSwitchWidget />
+            <UserWidget />
             <LogoutWidget />
           </div>
         </Header>
