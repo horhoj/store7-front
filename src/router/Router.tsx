@@ -3,7 +3,7 @@ import { routes } from './routes';
 import { ProductListPage } from '~/features/products/pages/ProductListPage';
 import { CategoryListPage } from '~/features/categories/pages/CategoryListPage';
 import { LoginPage } from '~/features/auth/pages/LoginPage';
-import { ProtectedRoute } from '~/features/auth/ProtectedRoute';
+import { ProtectedRoute } from '~/features/auth/components/ProtectedRoute';
 import { RegisterPage } from '~/features/auth/pages/RegisterPage';
 
 export function Router() {

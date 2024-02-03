@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { Drawer } from '../../ui/Drawer';
 import { ThemeSwitchWidget } from '../ThemeSwitch/ThemeSwitchWidget';
-import { LogoutWidget } from '../auth/LogoutWidget';
+import { LogoutWidget } from '../auth/widgets/LogoutWidget';
 import { LeftMenu } from './LeftMenu';
 import styles from './WorkLayout.module.scss';
 import { LeftMenuContent } from './LeftMenuContent';
@@ -39,8 +39,10 @@ export function WorkLayout({ children }: WorkLayoutProps) {
       <div className={styles.WorkLayout}>
         <Header>
           <Logo onMenuBtnClick={handleMenuButtonClick} />
-          <ThemeSwitchWidget />
-          <LogoutWidget />
+          <div className={styles.headerRightBlock}>
+            <ThemeSwitchWidget />
+            <LogoutWidget />
+          </div>
         </Header>
         <div className={styles.content}>
           <div className={styles.nav}>

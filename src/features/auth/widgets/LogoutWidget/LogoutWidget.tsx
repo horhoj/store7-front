@@ -1,4 +1,4 @@
-import { authSlice } from '../store/authSlice';
+import { authSlice } from '../../store/authSlice';
 import { useAppDispatch } from '~/store/hooks';
 import { Button } from '~/ui/Button';
 
