@@ -1,5 +1,5 @@
 import styles from './ProductListPage.module.scss';
-import { WorkLayout } from '~/features/WorkLayout';
+import { WorkLayout } from '~/features/layouts/WorkLayout';
 
 export function ProductListPage() {
   return (

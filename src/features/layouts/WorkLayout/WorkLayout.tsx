@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@uidotdev/usehooks';
-import { Drawer } from '../../ui/Drawer';
-import { ThemeSwitchWidget } from '../ThemeSwitch/ThemeSwitchWidget';
-import { LogoutWidget } from '../auth/widgets/LogoutWidget';
-import { UserWidget } from '../auth/widgets/UserWidget';
 import { LeftMenu } from './LeftMenu';
 import styles from './WorkLayout.module.scss';
 import { LeftMenuContent } from './LeftMenuContent';
 import { Logo } from './Logo';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { Drawer } from '~/ui/Drawer';
+import { ThemeSwitchWidget } from '~/features/ThemeSwitch/ThemeSwitchWidget';
+import { UserWidget } from '~/features/auth/widgets/UserWidget';
+import { LogoutWidget } from '~/features/auth/widgets/LogoutWidget';
 
 interface WorkLayoutProps {
   children?: React.ReactNode;

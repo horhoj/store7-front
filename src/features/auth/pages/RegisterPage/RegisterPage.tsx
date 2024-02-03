@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useEffect } from 'react';
-import { AuthLayout } from '../../../AuthLayout';
+import { AuthLayout } from '../../../layouts/AuthLayout';
 import { authSlice } from '../../store/authSlice';
 import { useAuthRedirect } from '../../hooks/useAuthRedirect';
 import { Button } from '~/ui/Button';
