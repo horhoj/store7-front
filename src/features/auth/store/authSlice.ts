@@ -83,9 +83,9 @@ const loginThunk = createAsyncThunk(
   async (payload: LoginThunkPayload, store) => {
     try {
       await authApi.login(payload.loginPayload);
-      store.dispatch(actions.setIsAuth(true));
       const userDataRes = await authApi.fetchUserData();
       store.dispatch(actions.setUserData(userDataRes));
+      store.dispatch(actions.setIsAuth(true));
       return null;
     } catch (e: unknown) {
       return store.rejectWithValue(getApiErrors(e));
@@ -98,7 +98,6 @@ const logoutThunk = createAsyncThunk(`${SLICE_NAME}`, async (_, store) => {
     store.dispatch(actions.setIsAuth(false));
     store.dispatch(actions.setUserData(null));
     authApi.logout();
-
     return null;
   } catch (e: unknown) {
     return store.rejectWithValue(getApiErrors(e));
@@ -110,8 +109,8 @@ const fetchUserDataFirstAppRunThunk = createAsyncThunk(
   async (_, store) => {
     try {
       const res = await authApi.fetchUserData();
-      store.dispatch(actions.setIsAuth(true));
       store.dispatch(actions.setUserData(res));
+      store.dispatch(actions.setIsAuth(true));
       return store.fulfillWithValue(null);
     } catch (e: unknown) {
       store.dispatch(actions.setIsAuth(false));
@@ -133,9 +132,9 @@ const registerThunk = createAsyncThunk(
         email: payload.registerPayload.email,
         password: payload.registerPayload.password,
       });
-      store.dispatch(actions.setIsAuth(true));
       const userDataRes = await authApi.fetchUserData();
       store.dispatch(actions.setUserData(userDataRes));
+      store.dispatch(actions.setIsAuth(true));
       return store.fulfillWithValue(null);
     } catch (e: unknown) {
       return store.rejectWithValue(getApiErrors(e));
