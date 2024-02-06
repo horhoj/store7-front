@@ -1,10 +1,14 @@
 .authLayoutWrapper {
   padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .AuthLayout {
-  margin: 100px auto auto auto;
   max-width: 400px;
+  width: 100%;
   background-color: var(--main-bg-color);
   padding: 20px 15px;
   border-radius: 10px;
