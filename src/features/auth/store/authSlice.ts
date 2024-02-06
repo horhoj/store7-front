@@ -142,9 +142,9 @@ const registerThunk = createAsyncThunk(
   },
 );
 
+export const authReducer = reducer;
 export const authSlice = {
   actions,
-  reducer,
   thunks: {
     loginThunk,
     logoutThunk,

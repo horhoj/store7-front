@@ -1,5 +1,5 @@
 import styles from './AuthLayout.module.scss';
-import { ThemeSwitchWidget } from '~/features/ThemeSwitch/ThemeSwitchWidget';
+import { ThemeSwitchWidget } from '~/features/settings/widgets/ThemeSwitchWidget';
 
 interface AuthLayoutProps {
   children?: React.ReactNode;

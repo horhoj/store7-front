@@ -1,6 +1,6 @@
 import styles from './App.module.scss';
-import { useThemeSwitch } from '~/features/ThemeSwitch/useThemeSwitch';
 import { useAuthFetchUserData } from '~/features/auth/hooks/useAuthFetchUserData';
+import { useThemeSwitch } from '~/features/settings/hooks/useThemeSwitch';
 import { Router } from '~/router/Router';
 import { Spinner } from '~/ui/Spinner';
 

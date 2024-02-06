@@ -7,7 +7,7 @@ import { Logo } from './Logo';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Drawer } from '~/ui/Drawer';
-import { ThemeSwitchWidget } from '~/features/ThemeSwitch/ThemeSwitchWidget';
+import { ThemeSwitchWidget } from '~/features/settings/widgets/ThemeSwitchWidget';
 import { UserWidget } from '~/features/auth/widgets/UserWidget';
 import { LogoutWidget } from '~/features/auth/widgets/LogoutWidget';
 
